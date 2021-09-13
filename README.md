@@ -1,6 +1,9 @@
 ## The Complete Guide to Full Stack Solana Development with React, Anchor, Rust, and Phantom
 
-Code examples to go with the blog post available [here](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nl0h25rp5h9ytg5wnrj7.png)
+Code examples to go with the blog post available [here](todo.js)
+
+![Header image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nl0h25rp5h9ytg5wnrj7.png)
+
 
 ### Prerequisites
 
