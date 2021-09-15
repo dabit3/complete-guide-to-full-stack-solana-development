@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Connection, PublicKey } from '@solana/web3.js';
 import {
   Program, Provider, web3
@@ -25,12 +25,7 @@ const programID = new PublicKey(idl.metadata.address);
 
 function App() {
   const [value, setValue] = useState(null);
-  const [connected, setConnected] = useState(false);
   const wallet = useWallet();
-  useEffect(() => {
-    window.solana.on("connect", () => setConnected(true));
-    return () => window.solana.disconnect();
-  }, [])
 
   async function getProvider() {
     /* create the provider and return it to the caller */
@@ -81,7 +76,7 @@ function App() {
     setValue(account.count.toString());
   }
 
-  if (!connected) {
+  if (!wallet.connected) {
     /* If the user's wallet is not connected, display connect wallet button. */
     return (
       <div style={{ display: 'flex', justifyContent: 'center', marginTop:'100px' }}>

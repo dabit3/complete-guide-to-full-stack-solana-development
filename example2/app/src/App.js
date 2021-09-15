@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 import idl from './idl.json';
@@ -21,13 +21,7 @@ function App() {
   const [value, setValue] = useState('');
   const [dataList, setDataList] = useState([]);
   const [input, setInput] = useState('');
-  const [connected, setConnected] = useState(false);
   const wallet = useWallet()
-
-  useEffect(() => {
-    window.solana.on("connect", () => setConnected(true));
-    return () => window.solana.disconnect();
-  }, [])
 
   async function getProvider() {
     /* create the provider and return it to the caller */
@@ -82,7 +76,7 @@ function App() {
     setInput('');
   }
 
-  if (!connected) {
+  if (!wallet.connected) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', marginTop:'100px' }}>
         <WalletMultiButton />
