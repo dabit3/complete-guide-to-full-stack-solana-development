@@ -1,10 +1,14 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Connection, PublicKey } from '@solana/web3.js';
-import {
-  Program, Provider, web3
-} from '@project-serum/anchor';
+import { Program, Provider, web3 } from '@project-serum/anchor';
 import idl from './idl.json';
+
+import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
+import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+
+const wallets = [ getPhantomWallet() ]
 
 const { SystemProgram, Keypair } = web3;
 const baseAccount = Keypair.generate();
@@ -18,15 +22,15 @@ function App() {
   const [dataList, setDataList] = useState([]);
   const [input, setInput] = useState('');
   const [connected, setConnected] = useState(false);
+  const wallet = useWallet()
+
   useEffect(() => {
-    return () => {
-      window.solana.disconnect();
-    }
+    window.solana.on("connect", () => setConnected(true));
+    return () => window.solana.disconnect();
   }, [])
 
   async function getProvider() {
     /* create the provider and return it to the caller */
-    const wallet = window.solana;
     /* network set to local network for now */
     const network = "http://127.0.0.1:8899";
     const connection = new Connection(network, opts.preflightCommitment);
@@ -51,7 +55,7 @@ function App() {
         },
         signers: [baseAccount]
       });
-  
+
       const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
       console.log('account: ', account);
       setValue(account.data.toString());
@@ -78,22 +82,10 @@ function App() {
     setInput('');
   }
 
-  async function getWallet() {
-    await window.solana.connect();
-    try {
-      const wallet = typeof window !== 'undefined' && window.solana;
-      await wallet.connect();
-      setConnected(true);
-    } catch (err) {
-      console.log('err: ', err);
-    }
-  }
-  console.log('datalist:', dataList)
-
   if (!connected) {
     return (
-      <div className="App">
-        <button onClick={getWallet}>Connect wallet</button>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop:'100px' }}>
+        <WalletMultiButton />
       </div>
     )
   } else {
@@ -103,7 +95,7 @@ function App() {
           {
             !value && (<button onClick={initialize}>Initialize</button>)
           }
-          
+
           {
             value ? (
               <div>
@@ -128,4 +120,14 @@ function App() {
   }
 }
 
-export default App;
+const AppWithProvider = () => (
+  <ConnectionProvider endpoint="http://127.0.0.1:8899">
+    <WalletProvider wallets={wallets} autoConnect>
+      <WalletModalProvider>
+        <App />
+      </WalletModalProvider>
+    </WalletProvider>
+  </ConnectionProvider>
+)
+
+export default AppWithProvider;
