@@ -27,8 +27,9 @@ mod example2 {
 pub struct Initialize<'info> {
     #[account(init, payer = user, space = 64 + 64)]
     pub base_account: Account<'info, BaseAccount>,
-    pub user: AccountInfo<'info>,
-    pub system_program: AccountInfo<'info>,
+    #[account(mut)]
+    pub user: Signer<'info>,
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
