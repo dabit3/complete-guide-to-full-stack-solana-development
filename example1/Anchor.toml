@@ -1,12 +1,14 @@
 [programs.localnet]
-example1 = "7CiTJHXzv7SdK1bf14nmCnPg9c8HRs3H9DdfEJMoay5K"
+example1 = "8YyQ16wbX43wMEKuvrtR3YuviemjcbExYTAZA2RWUVnC"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
 cluster = "localnet"
-wallet = "/Users/naderdabit/.config/solana/id.json"
+# RE: https://github.com/armaniferrante/serum-quickstart/issues/3
+wallet = "/home/ninja/.config/solana/id.json"
 
 [scripts]
-test = "mocha -t 1000000 tests/"
+# RE: https://github.com/project-serum/anchor/issues/945#issuecomment-961584522
+test = "npx mocha -t 1000000 tests/"
