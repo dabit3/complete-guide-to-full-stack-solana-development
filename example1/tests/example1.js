@@ -1,14 +1,19 @@
+
 const assert = require("assert");
 const anchor = require("@project-serum/anchor");
+
 const { SystemProgram } = anchor.web3;
 
 describe("example1", () => {
+  /* create and set a Provider */
   const provider = anchor.Provider.env();
   anchor.setProvider(provider);
+
   it("Creates and initializes an account in a single atomic transaction (simplified)", async () => {
     const program = anchor.workspace.Example1;
     const baseAccount = anchor.web3.Keypair.generate();
-    console.log('program: ', program)
+    console.log('program: ', program);
+
     await program.rpc.create({
       accounts: {
         baseAccount: baseAccount.publicKey,
@@ -19,10 +24,9 @@ describe("example1", () => {
     });
 
     const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-    console.log('Count 0: ', account.count.toString())
+    console.log('Count 0: ', account.count.toString());
     assert.ok(account.count.toString() == 0);
     _baseAccount = baseAccount;
-
   });
 
   it("Updates a previously created account", async () => {
@@ -36,7 +40,7 @@ describe("example1", () => {
     });
   
     const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-    console.log('Count 1: ', account.count.toString())
+    console.log('Count 1: ', account.count.toString());
     assert.ok(account.count.toString() == 1);
   });
 });
