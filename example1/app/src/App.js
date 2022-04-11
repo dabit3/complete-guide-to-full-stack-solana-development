@@ -36,37 +36,39 @@ const {
 /* Create an account  */
 const baseAccount = Keypair.generate();
 const opts = {
-  preflightCommitment: "processed"
-}
+  preflightCommitment: 'processed'
+};
 const programID = new PublicKey(idl.metadata.address);
 
-function App() {
+const App = () => {
   const [value, setValue] = useState(null);
   const wallet = useWallet();
 
   async function getProvider() {
-    /* create the provider and return it to the caller */
-    /* network set to local network for now */
-    const network = "http://127.0.0.1:8899";
+    /* Create the provider and return it to the caller */
+    /* Network set to local network for now */
+    const network = 'http://127.0.0.1:8899';
     const connection = new Connection(network, opts.preflightCommitment);
 
     const provider = new Provider(
-      connection, wallet, opts.preflightCommitment,
+      connection,
+      wallet,
+      opts.preflightCommitment
     );
     return provider;
   }
 
   async function createCounter() {    
-    const provider = await getProvider()
-    /* create the program interface combining the idl, program ID, and provider */
+    const provider = await getProvider();
+    /* Create the program interface combining the idl, program ID, and provider */
     const program = new Program(idl, programID, provider);
     try {
-      /* interact with the program via rpc */
+      /* Interact with the program via rpc */
       await program.rpc.create({
         accounts: {
           baseAccount: baseAccount.publicKey,
           user: provider.wallet.publicKey,
-          systemProgram: SystemProgram.programId,
+          systemProgram: SystemProgram.programId
         },
         signers: [baseAccount]
       });
@@ -74,8 +76,8 @@ function App() {
       const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
       console.log('account: ', account);
       setValue(account.count.toString());
-    } catch (err) {
-      console.log("Transaction error: ", err);
+    } catch (error) {
+      console.log('Transaction error: ', error);
     }
   }
 
@@ -94,44 +96,50 @@ function App() {
   }
 
   if (!wallet.connected) {
-    /* If the user's wallet is not connected, display connect wallet button. */
+    /* If the user's wallet is not connected, display connect wallet button */
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop:'100px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop:'100px'
+        }}>
         <WalletMultiButton />
       </div>
     )
   } else {
     return (
-      <div className="App">
-        <div>
-          {
-            !value && (<button onClick={createCounter}>Create counter</button>)
-          }
-          {
-            value && <button onClick={increment}>Increment counter</button>
-          }
-
-          {
-            value && value >= Number(0) ? (
-              <h2>{value}</h2>
-            ) : (
-              <h3>Please create the counter.</h3>
-            )
-          }
-        </div>
+      <div className='App'>
+        {!value && (
+          <button onClick={createCounter}>
+            Create counter
+          </button>
+        )}
+        {value && (
+          <button onClick={increment}>
+            Increment counter
+          </button>
+        )}
+        {value && value >= Number(0) ? (
+          <h2>{value}</h2>
+        ) : (
+          <h3>Please create the counter.</h3>
+        )}
       </div>
     );
   }
-}
+};
 
 const AppWithProvider = () => (
-  <ConnectionProvider endpoint="http://127.0.0.1:8899">
-    <WalletProvider wallets={wallets} autoConnect>
+  <ConnectionProvider endpoint='http://127.0.0.1:8899'>
+    <WalletProvider
+      wallets={wallets}
+      autoConnect>
       <WalletModalProvider>
         <App />
       </WalletModalProvider>
     </WalletProvider>
   </ConnectionProvider>
-)
+);
 
 export default AppWithProvider;
