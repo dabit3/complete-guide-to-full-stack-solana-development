@@ -1,22 +1,39 @@
-import './App.css';
-import { useState } from 'react';
-import { Connection, PublicKey } from '@solana/web3.js';
-import {
-  Program, Provider, web3
-} from '@project-serum/anchor';
-import idl from './idl.json';
 
+import { useState } from 'react';
+import {
+  Program,
+  Provider,
+  web3
+} from '@project-serum/anchor';
+import {
+  Connection,
+  PublicKey
+} from '@solana/web3.js';
 import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
-import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import {
+  useWallet,
+  WalletProvider,
+  ConnectionProvider
+} from '@solana/wallet-adapter-react';
+import {
+  WalletModalProvider,
+  WalletMultiButton
+} from '@solana/wallet-adapter-react-ui';
+
+import idl from './idl.json';
+import './App.css';
 
 const wallets = [
-  /* view list of available wallets at https://github.com/solana-labs/wallet-adapter#wallets */
+  /* View list of available wallets at https://github.com/solana-labs/wallet-adapter#wallets */
   getPhantomWallet()
-]
+];
 
-const { SystemProgram, Keypair } = web3;
-/* create an account  */
+const {
+  SystemProgram,
+  Keypair
+} = web3;
+
+/* Create an account  */
 const baseAccount = Keypair.generate();
 const opts = {
   preflightCommitment: "processed"
