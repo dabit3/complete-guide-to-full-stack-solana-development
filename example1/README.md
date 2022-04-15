@@ -1,5 +1,4 @@
 
-
 ## Notes
 
 It's better to install `Solana Tool Suite` and `Anchor` on Linux rather than Windows. On Windows, we can use `WSL` for Linux environment. Otherwise, tricky challenges are expected while installing those tools.
