@@ -1,4 +1,3 @@
-# Solana dApp UI template
 
 ## Tech stacks
 
