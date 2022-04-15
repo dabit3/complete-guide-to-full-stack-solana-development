@@ -4,11 +4,17 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { SolanaWalletProvider } from 'contexts/solana-wallet-context';
+import { AutoConnectProvider } from 'contexts/auto-connect-context';
 import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AutoConnectProvider>
+      <SolanaWalletProvider>
+        <App />
+      </SolanaWalletProvider>
+    </AutoConnectProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
