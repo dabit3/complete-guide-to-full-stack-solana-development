@@ -39,6 +39,7 @@ function App() {
     const provider = await getProvider();
     /* create the program interface combining the idl, program ID, and provider */
     const program = new Program(idl, programID, provider);
+    console.log(program.programId.toBase58());
     try {
       /* interact with the program via rpc */
       await program.rpc.initialize("Hello World", {
