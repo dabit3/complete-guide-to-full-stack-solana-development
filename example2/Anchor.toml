@@ -1,11 +1,11 @@
-[programs.localnet]
-example2 = "BEPhkwFSf3m5Daz5LZPZhBbeVBkvY3vKnGRiWtNwFn54"
+[programs.devnet]
+example2 = "6ih5kvMyg69wFpDTcJJC5enyPux5NJjvXr3gpGuUUUKk"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

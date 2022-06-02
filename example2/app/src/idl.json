@@ -1,71 +1,71 @@
 {
-    "version": "0.1.0",
-    "name": "example2",
-    "instructions": [
-      {
-        "name": "initialize",
-        "accounts": [
-          {
-            "name": "baseAccount",
-            "isMut": true,
-            "isSigner": true
-          },
-          {
-            "name": "user",
-            "isMut": true,
-            "isSigner": true
-          },
-          {
-            "name": "systemProgram",
-            "isMut": false,
-            "isSigner": false
-          }
-        ],
-        "args": [
-          {
-            "name": "data",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "name": "update",
-        "accounts": [
-          {
-            "name": "baseAccount",
-            "isMut": true,
-            "isSigner": false
-          }
-        ],
-        "args": [
-          {
-            "name": "data",
-            "type": "string"
-          }
-        ]
-      }
-    ],
-    "accounts": [
-      {
-        "name": "BaseAccount",
-        "type": {
-          "kind": "struct",
-          "fields": [
-            {
-              "name": "data",
-              "type": "string"
-            },
-            {
-              "name": "dataList",
-              "type": {
-                "vec": "string"
-              }
-            }
-          ]
+  "version": "0.1.0",
+  "name": "example2",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
-      }
-    ],
-    "metadata": {
-      "address": "BEPhkwFSf3m5Daz5LZPZhBbeVBkvY3vKnGRiWtNwFn54"
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
     }
+  ],
+  "accounts": [
+    {
+      "name": "BaseAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "data",
+            "type": "string"
+          },
+          {
+            "name": "dataList",
+            "type": {
+              "vec": "string"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "6ih5kvMyg69wFpDTcJJC5enyPux5NJjvXr3gpGuUUUKk"
   }
+}
