@@ -4,7 +4,6 @@ Code examples to go with the blog post available [here](https://dev.to/dabit3/th
 
 ![Header image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nl0h25rp5h9ytg5wnrj7.png)
 
-
 ### Prerequisites
 
 1. Node.js - I recommend installing Node using either [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm)
@@ -49,7 +48,7 @@ anchor build
 solana address -k target/deploy/<programname>-keypair.json
 ```
 
-6. Update the project ID in the Rust program located at __projectname/programs/src/programname.rs__ with the output from above.
+6. Update the project ID in the Rust program located at **projectname/programs/src/programname.rs** with the output from above.
 
 7. Run the tests
 
@@ -57,14 +56,58 @@ solana address -k target/deploy/<programname>-keypair.json
 anchor test
 ```
 
-8. Change into the __app__ directory and install the dependencies:
+8. Change into the **app** directory and install the dependencies:
 
 ```sh
 cd app && npm install
-``` 
+```
 
 9. Run the client-side app
 
 ```sh
 npm start
 ```
+
+### Basic Steps for Full Stack Web Developer
+
+1. Learn Basic of:
+   - HTML
+   - CSS
+   - JavaScript
+2. Develop Simple Project using these technologies to understand how does the website actually work.
+3. Choose any 1 Front-End Technology:
+   - React JS
+   - Vue JS
+   - Angular
+4. Along with Front-End we need to study Back-End also:
+   - Java
+   - Python
+   - C#
+   - Ruby
+   - Php
+   - Node JS
+5. We need databases to store the data:
+
+- SQL
+  - MYSQL
+  - SQL Server
+  - Oracle
+  - Postegre SQL
+- NOSQL
+  - MongoDB
+  - Casssandra
+  - CouchDB
+
+6. Then we have different versions of the developed software with some changes, so we use:
+   - Git
+   - GitHub/GitLab/BitBucket
+7. Finally we need one of the Cloud Services to host the website:
+   - Google Cloud Platform
+   - Microsoft Azure
+   - Amazon Web Service
+   - Heroku
+8. Some containers used in Cloud Services:
+   - Docker
+   - Kubernetes
+
+## Once we prepare all these aspect for a particular project we can get a hang of Full Stack Web Development.
